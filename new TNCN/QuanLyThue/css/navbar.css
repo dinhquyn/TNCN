@@ -1,0 +1,62 @@
+/* QuanLyThue/css/navbar.css */
+
+/* CSS tùy chỉnh cho navbar */
+.sidebar {
+    background-color: #343a40;
+    /* Màu nền tối */
+    height: 100vh;
+    /* Chiều cao 100% */
+    padding: 20px;
+    /* Padding cho sidebar */
+}
+
+.sidebar .nav-links {
+    list-style: none;
+    /* Bỏ dấu chấm đầu dòng */
+    padding: 0;
+    /* Bỏ padding */
+}
+
+.sidebar .nav-links li {
+    margin: 15px 0;
+    /* Khoảng cách giữa các mục */
+}
+
+.sidebar .nav-links a {
+    color: #ffffff;
+    /* Màu chữ trắng */
+    text-decoration: none;
+    /* Bỏ gạch chân */
+    padding: 10px 15px;
+    /* Padding cho các liên kết */
+    border-radius: 5px;
+    /* Bo tròn góc */
+    transition: background-color 0.3s;
+    /* Hiệu ứng chuyển màu */
+}
+
+.sidebar .nav-links a:hover {
+    background-color: #495057;
+    /* Màu nền khi hover */
+}
+
+.sidebar .nav-links .active a {
+    background-color: #007bff;
+    /* Màu nền cho mục đang hoạt động */
+}
+
+.user-info {
+    text-align: center;
+    /* Căn giữa nội dung */
+    margin-bottom: 20px;
+    /* Khoảng cách dưới */
+}
+
+.user-info img {
+    width: 80px;
+    /* Kích thước avatar */
+    height: 80px;
+    /* Kích thước avatar */
+    border-radius: 50%;
+    /* Bo tròn avatar */
+}

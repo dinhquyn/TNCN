@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Nhân Viên</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+
+<body>
+    <!-- Thanh điều hướng -->
+    <nav class="sidebar">
+        <div class="user-info">
+            <img src="../../assets/images/avatar.png" alt="Avatar" class="avatar">
+            <h3 id="userName">Nguyễn Văn A</h3>
+            <p>Nhân viên</p>
+        </div>
+
+        <ul class="nav-links">
+            <li class="active">
+                <a href="dashboard.html">
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <span>Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li>
+                <a href="salary-and-tax-report.html">
+                    <span>Xem lương và Thuế TNCN</span>
+                </a>
+            </li>
+            <li>
+                <a href="tax-report.html">
+                    <span>Quyết toán thuế TNCN</span>
+                </a>
+            </li>
+            <li>
+                <a href="tax-calculator.html">
+                    <span>Thử Thuế TNCN</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="logoutBtn">
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Nội dung chính -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Trang Chủ</h1>
+            <div class="user-menu">
+                <span id="currentDate"></span>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <!-- Thống kê tổng quan -->
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>Lương tháng này</h3>
+                    <p class="amount">15,000,000 VNĐ</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Thuế TNCN</h3>
+                    <p class="amount">1,500,000 VNĐ</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Bảo hiểm</h3>
+                    <p class="amount">750,000 VNĐ</p>
+                </div>
+            </div>
+
+            <!-- Thông báo mới -->
+            <div class="notifications">
+                <h2>Thông Báo Mới</h2>
+                <div class="notification-list">
+                    <div class="notification-item">
+                        <h4>Bảng lương tháng 3/2024</h4>
+                        <p>Bảng lương đã được cập nhật. Vui lòng kiểm tra.</p>
+                        <span class="date">15/03/2024</span>
+                    </div>
+                    <div class="notification-item">
+                        <h4>Cập nhật thông tin BHXH</h4>
+                        <p>Vui lòng cập nhật thông tin BHXH trước ngày 20/03/2024</p>
+                        <span class="date">10/03/2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../js/dashboard.js"></script>
+</body>
+
+</html>

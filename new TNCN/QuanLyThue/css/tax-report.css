@@ -1,0 +1,54 @@
+body {
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.table {
+    background-color: #ffffff;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.table td {
+    color: #343a40;
+}
+
+.tax-report-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.tax-report-content .form-group {
+    margin-bottom: 15px;
+}
+
+.tax-report-content .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.tax-report-content .form-group p {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.calculate-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.calculate-btn:hover {
+    background: #45a049;
+}

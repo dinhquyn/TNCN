@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xem Lương và Thuế Từng Tháng - Nhân Viên</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/salary-and-tax-report.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <nav class="sidebar">
+        <div class="user-info">
+            <img src="../../assets/images/avatar.png" alt="Avatar" class="avatar">
+            <h3 id="userName">Nguyễn Văn A</h3>
+            <p>Nhân viên</p>
+        </div>
+
+        <ul class="nav-links">
+            <li class="active">
+                <a href="dashboard.html">
+                    <span>Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html">
+                    <span>Thông tin cá nhân</span>
+                </a>
+            </li>
+            <li>
+                <a href="salary-and-tax-report.html">
+                    <span>Xem lương và Thuế TNCN</span>
+                </a>
+            </li>
+            <li>
+                <a href="tax-report.html">
+                    <span>Quyết toán thuế TNCN</span>
+                </a>
+            </li>
+            <li>
+                <a href="tax-calculator.html">
+                    <span>Thử Thuế TNCN</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="logoutBtn">
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Sidebar - Copy từ dashboard.html -->
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Xem Lương và Thuế Từng Tháng</h1>
+                <div class="user-menu">
+                    <span id="currentDate"></span>
+                </div>
+            </header>
+
+            <div class="salary-tax-report-content">
+                <h2 class="h5">Thông tin lương và thuế từng tháng</h2>
+                <table id="salaryTaxTable">
+                    <thead>
+                        <tr>
+                            <th>Tháng</th>
+                            <th>Lương cơ bản</th>
+                            <th>Phụ cấp</th>
+                            <th>Tổng thu nhập</th>
+                            <th>Giảm trừ</th>
+                            <th>Thuế TNCN phải nộp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dữ liệu lương và thuế sẽ được thêm bằng JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/salary-and-tax-report.js"></script>
+</body>
+
+</html>
