@@ -122,6 +122,11 @@
                         <label>Mã số thuế:</label>
                         <input type="text" id="taxCode" class="form-control" readonly>
                     </div>
+                    <div class="form-group">
+                        <label>Địa chỉ:</label>
+                        <input type="text" id="address" class="form-control" readonly>
+                    </div>
+
 
                     <button type="button" class="btn btn-warning edit-btn" id="editBtn">
                         <i class="fas fa-pencil-alt"></i> Chỉnh sửa
@@ -140,7 +145,10 @@
         document.getElementById('editBtn').addEventListener('click', function () {
             const inputs = document.querySelectorAll('.profile-form input');
             inputs.forEach(input => {
-                input.readOnly = false;
+                // Chỉ cho phép chỉnh sửa họ tên, email và số điện thoại
+                if (input.id === 'fullName' || input.id === 'email' || input.id === 'phone' || input.id === 'address') {
+                    input.readOnly = false;
+                }
             });
             this.style.display = 'none';
             document.querySelector('.save-btn').style.display = 'inline-block';

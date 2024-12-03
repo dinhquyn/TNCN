@@ -1,74 +1,72 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Kiểm tra đăng nhập
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        window.location.href = '../../index.html';
-        return;
-    }
+    loadProfile();
 
-    // Load thông tin nhân viên
-    loadEmployeeInfo();
+    document.getElementById('editBtn').addEventListener('click', function () {
+        const inputs = document.querySelectorAll('.profile-form input');
+        inputs.forEach(input => {
+            if (input.id === 'fullName' || input.id === 'email' || input.id === 'phone' || input.id === 'address') {
+                input.readOnly = false;
+            }
+        });
+        this.style.display = 'none';
+        document.querySelector('.btn-success').style.display = 'inline-block';
+    });
 
-    // Xử lý form cập nhật
-    document.getElementById('profileForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        updateProfile();
+    document.querySelector('.btn-success').addEventListener('click', function () {
+        if (validateInputs()) {
+            alert('Thông tin cá nhân đã được lưu.');
+            loadProfile(); // Tải lại thông tin cá nhân
+        }
     });
 });
 
-function loadEmployeeInfo() {
-    // Giả lập dữ liệu nhân viên - sau này sẽ lấy từ API
-    const employeeData = {
-        employeeId: "NV001",
-        fullName: "Nguyễn Văn A",
-        email: "nguyenvana@gmail.com",
-        phone: "0123456789",
-        department: "Phòng IT",
-        position: "Nhân viên",
-        taxCode: "8751234567"
+function loadProfile() {
+    // Giả lập dữ liệu thông tin cá nhân
+    const profile = {
+        fullName: 'Nguyễn Văn A',
+        email: 'a@example.com',
+        phone: '0123456789',
+        address: '123 Đường ABC, Quận 1, TP.HCM'
     };
 
-    // Điền thông tin vào form
-    document.getElementById('employeeId').value = employeeData.employeeId;
-    document.getElementById('fullName').value = employeeData.fullName;
-    document.getElementById('email').value = employeeData.email;
-    document.getElementById('phone').value = employeeData.phone;
-    document.getElementById('department').value = employeeData.department;
-    document.getElementById('position').value = employeeData.position;
-    document.getElementById('taxCode').value = employeeData.taxCode;
+    document.getElementById('fullName').value = profile.fullName;
+    document.getElementById('email').value = profile.email;
+    document.getElementById('phone').value = profile.phone;
+    document.getElementById('address').value = profile.address;
 }
 
-function updateProfile() {
-    // Lấy thông tin từ form
-    const updatedData = {
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value
-    };
+function validateInputs() {
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
 
-    // Giả lập cập nhật thông tin - sau này sẽ gửi lên API
-    console.log('Cập nhật thông tin:', updatedData);
+    // Kiểm tra định dạng họ tên
+    const nameRegex = /^[a-zA-ZÀÁẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶĐ\s]+$/;
+    if (!nameRegex.test(fullName)) {
+        alert('Họ tên không hợp lệ. Vui lòng nhập lại.');
+        return false;
+    }
 
-    // Hiển thị thông báo thành công
-    alert('Cập nhật thông tin thành công!');
+    // Kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Email không hợp lệ. Vui lòng nhập lại.');
+        return false;
+    }
+
+    // Kiểm tra định dạng số điện thoại
+    const phoneRegex = /^\d{10}$/; // Chỉ cho phép 10 chữ số
+    if (!phoneRegex.test(phone)) {
+        alert('Số điện thoại không hợp lệ. Vui lòng nhập lại.');
+        return false;
+    }
+
+    // Kiểm tra địa chỉ (có thể tùy chỉnh theo yêu cầu)
+    if (address.trim() === '') {
+        alert('Địa chỉ không được để trống.');
+        return false;
+    }
+
+    return true;
 }
-
-// Xử lý đổi ảnh đại diện
-document.querySelector('.change-avatar-btn').addEventListener('click', function () {
-    // Tạo input file ẩn
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*';
-
-    fileInput.onchange = function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                document.querySelector('.profile-avatar').src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    fileInput.click();
-});

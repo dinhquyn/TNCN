@@ -7,6 +7,12 @@ const users = [
         fullName: "Nguyễn Văn A"
     },
     {
+        username: "nhom2",
+        password: "123456",
+        role: "nhan_vien",
+        fullName: "Nguyễn Văn A"
+    },
+    {
         username: "truongphong1",
         password: "123456",
         role: "truong_phong",

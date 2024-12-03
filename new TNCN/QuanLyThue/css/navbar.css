@@ -1,48 +1,35 @@
 /* QuanLyThue/css/navbar.css */
 
-/* CSS tùy chỉnh cho navbar */
-.sidebar {
-    background-color: #343a40;
-    /* Màu nền tối */
-    height: 100vh;
-    /* Chiều cao 100% */
-    padding: 20px;
-    /* Padding cho sidebar */
-}
-
-.sidebar .nav-links {
-    list-style: none;
-    /* Bỏ dấu chấm đầu dòng */
+body {
+    margin: 0;
+    /* Bỏ margin mặc định */
     padding: 0;
-    /* Bỏ padding */
+    /* Bỏ padding mặc định */
+    display: flex;
+    /* Sử dụng flexbox để căn chỉnh */
 }
 
-.sidebar .nav-links li {
-    margin: 15px 0;
-    /* Khoảng cách giữa các mục */
-}
-
-.sidebar .nav-links a {
-    color: #ffffff;
-    /* Màu chữ trắng */
-    text-decoration: none;
-    /* Bỏ gạch chân */
-    padding: 10px 15px;
-    /* Padding cho các liên kết */
-    border-radius: 5px;
-    /* Bo tròn góc */
-    transition: background-color 0.3s;
-    /* Hiệu ứng chuyển màu */
-}
-
-.sidebar .nav-links a:hover {
-    background-color: #495057;
-    /* Màu nền khi hover */
-}
-
-.sidebar .nav-links .active a {
-    background-color: #007bff;
-    /* Màu nền cho mục đang hoạt động */
+.sidebar {
+    position: fixed;
+    /* Đặt navbar ở vị trí cố định */
+    top: 0;
+    /* Căn trên cùng */
+    left: 0;
+    /* Căn bên trái */
+    width: 250px;
+    /* Chiều rộng của navbar */
+    height: 100vh;
+    /* Chiều cao 100% của viewport */
+    background-color: #fff;
+    /* Màu nền cho navbar */
+    border-right: 1px solid #ddd;
+    /* Đường viền bên phải */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng bên phải */
+    padding: 20px;
+    /* Padding cho navbar */
+    box-sizing: border-box;
+    /* Đảm bảo padding không làm tăng chiều rộng */
 }
 
 .user-info {
@@ -52,11 +39,50 @@
     /* Khoảng cách dưới */
 }
 
-.user-info img {
+.user-info .avatar {
     width: 80px;
     /* Kích thước avatar */
     height: 80px;
     /* Kích thước avatar */
     border-radius: 50%;
     /* Bo tròn avatar */
+}
+
+.nav-links {
+    list-style: none;
+    /* Bỏ dấu chấm đầu dòng */
+    padding: 0;
+    /* Bỏ padding */
+}
+
+.nav-links li {
+    margin: 15px 0;
+    /* Khoảng cách giữa các mục */
+}
+
+.nav-links a {
+    display: block;
+    /* Hiển thị như một khối */
+    padding: 10px;
+    /* Padding cho các liên kết */
+    color: #333;
+    /* Màu chữ */
+    text-decoration: none;
+    /* Bỏ gạch chân */
+    border-radius: 5px;
+    /* Bo tròn góc */
+    transition: background-color 0.3s;
+    /* Hiệu ứng chuyển màu */
+}
+
+.nav-links a:hover {
+    background-color: #f0f0f0;
+    /* Màu nền khi hover */
+}
+
+.nav-links .active a {
+    background-color: #406ff3;
+    /* Màu nền cho mục đang hoạt động */
+    color: #fff;
+    /* Màu chữ cho mục đang hoạt động */
 }

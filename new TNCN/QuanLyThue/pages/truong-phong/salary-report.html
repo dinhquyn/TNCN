@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Trưởng Phòng</title>
+    <title>Xem Lương và Thuế TNCN</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navbar.css">
@@ -52,16 +52,27 @@
 
     <main class="main-content">
         <header class="top-bar">
-            <h1>Dashboard Trưởng Phòng</h1>
+            <h1>Xem Lương và Thuế TNCN</h1>
         </header>
 
         <div class="container">
-            <h2>Chức năng</h2>
-            <p>Chọn chức năng từ menu bên trái để quản lý nhân viên và xem thông tin liên quan.</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Họ và Tên</th>
+                        <th>Lương</th>
+                        <th>Thuế TNCN</th>
+                    </tr>
+                </thead>
+                <tbody id="salaryTableBody">
+                    <!-- Dữ liệu lương sẽ được thêm vào đây -->
+                </tbody>
+            </table>
         </div>
     </main>
 
-    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/salary-report.js"></script>
 </body>
 
 </html>

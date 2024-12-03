@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Trưởng Phòng</title>
+    <title>Quản Lý Nhân Viên</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navbar.css">
@@ -52,16 +52,29 @@
 
     <main class="main-content">
         <header class="top-bar">
-            <h1>Dashboard Trưởng Phòng</h1>
+            <h1>Quản Lý Nhân Viên</h1>
         </header>
 
         <div class="container">
-            <h2>Chức năng</h2>
-            <p>Chọn chức năng từ menu bên trái để quản lý nhân viên và xem thông tin liên quan.</p>
+            <button class="btn btn-primary" id="addEmployeeBtn">Thêm Nhân Viên</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mã Nhân Viên</th>
+                        <th>Họ và Tên</th>
+                        <th>Email</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Chức Năng</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody">
+                    <!-- Dữ liệu nhân viên sẽ được thêm vào đây -->
+                </tbody>
+            </table>
         </div>
     </main>
 
-    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/employee-management.js"></script>
 </body>
 
 </html>
