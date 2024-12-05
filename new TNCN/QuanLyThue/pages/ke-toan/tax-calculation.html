@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Thuế Thu Nhập Cá Nhân - Phòng Kế Toán</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Style chung cho modal */
+        .modal-dialog.modal-lg {
+            max-width: 800px;
+        }
+
+        .main-content {
+            padding: 20px;
+            height: 100vh;
+            /* overflow: hidden; */
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .modal-body {
+            max-height: calc(100vh - 180px);
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        /* Style cho tax detail */
+        .tax-detail {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        /* Style cho các section */
+        .employee-info,
+        .income-detail,
+        .deduction-detail,
+        .tax-calculation {
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        /* Header của mỗi section */
+        .tax-detail h6 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tax-detail h6::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #1a73e8;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        /* Style cho bảng */
+        .tax-detail .table {
+            margin-bottom: 0;
+            background-color: #fff;
+        }
+
+        .tax-detail .table th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .tax-detail .table td {
+            vertical-align: middle;
+            padding: 12px 15px;
+            color: #2c3e50;
+        }
+
+        /* Style cho dòng tổng */
+        .table-info {
+            background-color: #f0f7ff !important;
+        }
+
+        .table-info td,
+        .table-info th {
+            color: #2c3e50 !important;
+            font-weight: 600;
+            background-color: #e3f2fd !important;
+        }
+
+        /* Style cho kết quả cuối cùng */
+        .final-result {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            text-align: center;
+        }
+
+        .final-result h6 {
+            font-size: 1.25rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Style cho các nút */
+        .modal-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 15px 20px;
+        }
+
+        .modal-footer .btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .btn-success {
+            background-color: #1a73e8;
+            border-color: #1a73e8;
+        }
+
+        .btn-success:hover {
+            background-color: #0d47a1;
+            border-color: #0d47a1;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .modal-dialog.modal-lg {
+                margin: 10px;
+            }
+
+            .tax-detail .table {
+                white-space: nowrap;
+            }
+
+            .employee-info,
+            .income-detail,
+            .deduction-detail,
+            .tax-calculation {
+                padding: 15px;
+            }
+        }
+
+        /* Style cho thông tin chi tiết */
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* Style cho modal header */
+        .modal-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        .modal-header .close {
+            color: white;
+            opacity: 1;
+        }
+
+        .modal-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        /* Animation cho modal */
+        .modal.fade .modal-dialog {
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal.show .modal-dialog {
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="user-info text-center">
+            <h3>Kế Toán</h3>
+            <p id="userName">Chào mừng bạn!</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
+            <li><a href="department-management.html"><span>Quản lý phòng ban</span></a></li>
+            <li><a href="salary-input.html"><span>Nhập lương hàng tháng</span></a></li>
+            <li><a href="tax-calculation.html" class="active"><span>Tính thuế</span></a></li>
+            <li><a href="deduction-setup.html"><span>Thiết lập miễn giảm trừ</span></a></li>
+            <li><a href="personal-info.html"><span>Thông tin cá nhân</span></a></li>
+            <li><a href="salary-tax-report.html"><span>Xem lương và thuế</span></a></li>
+            <li><a href="annual-tax-report.html"><span>Quyết toán thuế năm</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2 class="mb-4">Tính Thuế Thu Nhập Cá Nhân</h2>
+
+            <!-- Bộ lọc -->
+            <div class="filter-section">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Tháng</label>
+                            <select class="form-control" id="monthSelect">
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Năm</label>
+                            <select class="form-control" id="yearSelect">
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phòng ban</label>
+                            <select class="form-control" id="departmentSelect">
+                                <option value="">Tất cả phòng ban</option>
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danh sách nhân viên và tính thuế -->
+            <div class="tax-calculation-section">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã NV</th>
+                                <th>Họ và tên</th>
+                                <th>Thu nhập</th>
+                                <th>Giảm trừ</th>
+                                <th>Thu nhập tính thuế</th>
+                                <th>Thuế TNCN</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeList">
+                            <!-- Sẽ được điền bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tính Thuế -->
+        <div class="modal fade" id="taxCalculationModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tính Thuế Thu Nhập Cá Nhân</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="taxCalculationForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nhân viên</label>
+                                        <input type="text" class="form-control" id="employeeName" disabled>
+                                        <input type="hidden" id="employeeId">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tổng thu nhập</label>
+                                        <input type="text" class="form-control" id="totalIncome" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số người phụ thuộc</label>
+                                        <input type="text" class="form-control" id="dependentsCount" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Các khoản giảm trừ áp dụng</label>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="personalDeduction"
+                                                checked disabled>
+                                            <label class="custom-control-label" for="personalDeduction">
+                                                Giảm trừ bản thân (11.000.000đ/tháng)
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="dependentDeduction"
+                                                checked>
+                                            <label class="custom-control-label" for="dependentDeduction">
+                                                Giảm trừ người phụ thuộc
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="insuranceDeduction"
+                                                checked>
+                                            <label class="custom-control-label" for="insuranceDeduction">
+                                                Bảo hiểm bắt buộc
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ghi chú</label>
+                                        <textarea class="form-control" id="taxNote" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="taxResultSection" style="display: none;">
+                            <!-- Kết quả tính thuế sẽ được hiển thị ở đây -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="calculateTaxBtn">Tính thuế</button>
+                        <button type="button" class="btn btn-success" id="saveTaxBtn"
+                            style="display: none;">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thêm modal hiển thị kết quả tính thuế -->
+        <div class="modal fade" id="taxResultModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chi Tiết Tính Thuế</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="taxResultContent">
+                            <!-- Nội dung chi tiết thuế sẽ được thêm bởi JavaScript -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-success" id="sendReportBtn">
+                            <i class="fas fa-paper-plane"></i> Gửi báo cáo
+                        </button>
+                        <button type="button" class="btn btn-primary" id="downloadReportBtn">
+                            <i class="fas fa-download"></i> Tải xuống
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../js/tax-calculation.js"></script>
+</body>
+
+</html>

@@ -4,86 +4,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thử Tính Thuế - Nhân Viên</title>
+    <title>Tính Thử Thuế Thu Nhập Cá Nhân</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="../../css/tax-calculator.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .calculator-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .result-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .tax-breakdown {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .dependent-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .remove-dependent {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Sidebar - Copy từ dashboard.html -->
     <nav class="sidebar">
-        <div class="user-info">
-            <img src="../../assets/images/avatar.png" alt="Avatar" class="avatar">
-            <h3 id="userName">Nguyễn Văn A</h3>
-            <p>Nhân viên</p>
+        <div class="user-info text-center">
+            <h3>Nhân viên</h3>
+            <p id="userName">Chào mừng bạn!</p>
         </div>
-
         <ul class="nav-links">
-            <li class="active">
-                <a href="dashboard.html">
-                    <span>Trang chủ</span>
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <span>Thông tin cá nhân</span>
-                </a>
-            </li>
-            <li>
-                <a href="salary-and-tax-report.html">
-                    <span>Xem lương và Thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="tax-report.html">
-                    <span>Quyết toán thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="tax-calculator.html">
-                    <span>Thử Thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" id="logoutBtn">
-                    <span>Đăng xuất</span>
-                </a>
-            </li>
+            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
+            <li><a href="salary-and-tax-report.html"><span>Xem lương và thuế TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><span>Xem quyết toán thuế thu nhập cả năm</span></a></li>
+            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
+            <li><a href="tax-calculator.html" class="active"><span>Tính thử thuế TNCN</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
         </ul>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container">
-        <main class="main-content">
-            <header class="top-bar">
-                <h1>Thử Tính Thuế</h1>
-                <div class="user-menu">
-                    <span id="currentDate"></span>
+    <main class="main-content">
+        <div class="d-block d-md-none">
+            <button id="toggleMenu" class="btn btn-primary mb-3">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="container">
+            <div class="calculator-section">
+                <h3 class="mb-4">Tính Thử Thuế Thu Nhập Cá Nhân</h3>
+
+                <form id="taxCalculatorForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Lương cơ bản</label>
+                                <input type="number" class="form-control" id="basicSalary" required>
+                                <small class="text-danger" id="basicSalaryError"></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phụ cấp và thưởng</label>
+                                <input type="number" class="form-control" id="bonus" value="0">
+                                <small class="text-danger" id="bonusError"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số người phụ thuộc</label>
+                        <input type="number" class="form-control" id="dependentsCount" min="0" value="0"
+                            placeholder="Nhập số người phụ thuộc">
+                        <small class="text-danger" id="dependentsError"></small>
+                        <small class="form-text text-muted">
+                            Mỗi người phụ thuộc được giảm trừ 4.400.000đ/tháng
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Các khoản bảo hiểm</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="socialInsuranceCheck" checked>
+                            <label class="custom-control-label" for="socialInsuranceCheck">
+                                Bảo hiểm xã hội (8% lương)
+                            </label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="healthInsuranceCheck" checked>
+                            <label class="custom-control-label" for="healthInsuranceCheck">
+                                Bảo hiểm y tế (1.5% lương)
+                            </label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="unemploymentInsuranceCheck" checked>
+                            <label class="custom-control-label" for="unemploymentInsuranceCheck">
+                                Bảo hiểm thất nghiệp (1% lương)
+                            </label>
+                        </div>
+                        <small class="form-text text-muted">
+                            Mức lương tối đa đóng BHXH, BHYT, BHTN: 20 x 4.420.000đ = 88.400.000đ
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Tính thuế</button>
+                </form>
+
+                <div id="resultSection" class="result-section" style="display: none;">
+                    <h4>Kết quả tính thuế</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Tổng thu nhập:</strong> <span id="totalIncome">0 VNĐ</span></p>
+                            <p><strong>Giảm trừ gia cảnh:</strong> <span id="totalDeduction">0 VNĐ</span></p>
+                            <p><strong>Thu nhập tính thuế:</strong> <span id="taxableIncome">0 VNĐ</span></p>
+                            <p><strong>Thuế TNCN phải nộp:</strong> <span id="taxAmount">0 VNĐ</span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>BHXH (8%):</strong> <span id="socialInsurance">0 VNĐ</span></p>
+                            <p><strong>BHYT (1.5%):</strong> <span id="healthInsurance">0 VNĐ</span></p>
+                            <p><strong>BHTN (1%):</strong> <span id="unemploymentInsurance">0 VNĐ</span></p>
+                            <p><strong>Thực lĩnh:</strong> <span id="netSalary">0 VNĐ</span></p>
+                        </div>
+                    </div>
+
+                    <div class="tax-breakdown">
+                        <h5>Chi tiết tính thuế theo bậc</h5>
+                        <div id="taxBreakdown">
+                            <!-- Chi tiết tính thuế sẽ được thêm vào đây -->
+                        </div>
+                    </div>
                 </div>
-            </header>
-
-            <div class="tax-calculator-content">
-                <h2 class="h5">Nhập thông tin thu nhập</h2>
-                <div class="form-group">
-                    <label>Thu nhập cần tính:</label>
-                    <input type="number" id="monthlyIncomeInput" placeholder="Nhập tổng thu nhập hàng tháng" />
-                </div>
-                <div class="form-group">
-                    <label>Số người phụ thuộc:</label>
-                    <input type="number" id="deductionsInput" placeholder="Số người phụ thuộc" />
-                </div>
-                <button id="calculateTaxBtn" class="calculate-btn">Tính thuế TNCN</button>
-
-                <h3>Kết quả:</h3>
-                <p id="monthlyTaxResult">Thuế TNCN phải nộp hàng tháng: 0 VNĐ</p>
-
-
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../../js/tax-calculator.js"></script>
 </body>
 

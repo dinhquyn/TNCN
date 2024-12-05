@@ -4,10 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xem Lương và Thuế TNCN</title>
+    <title>Báo Cáo Lương và Thuế TNCN - Phòng Kế Toán</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .salary-filter {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .salary-summary {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .table thead th {
+            background-color: #34495e;
+            color: white;
+            border-color: #2c3e50;
+        }
+
+        .salary-details {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .modal-header {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        @media print {
+
+            .sidebar,
+            .salary-filter,
+            .no-print {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 0 !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -17,61 +83,157 @@
             <p>Chào mừng bạn!</p>
         </div>
         <ul class="nav-links">
-            <li>
-                <a href="employee-management.html">
-                    <span>Quản lý nhân viên</span>
-                </a>
-            </li>
-            <li>
-                <a href="salary-report.html">
-                    <span>Xem lương và thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="tax-report.html">
-                    <span>Xem quyết toán thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="annual-tax-report.html">
-                    <span>Xem quyết toán thuế cuối năm</span>
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <span>Thông tin cá nhân</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" id="logoutBtn">
-                    <span>Đăng xuất</span>
-                </a>
-            </li>
+            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
+            <li><a href="employee-management.html"><span>Quản lý nhân viên</span></a></li>
+            <li><a href="salary-report.html" class="active"><span>Xem lương và thuế TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><span>Xem quyết toán thuế cuối năm</span></a></li>
+            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
         </ul>
     </nav>
 
     <main class="main-content">
+        <div class="d-block d-md-none">
+            <button id="toggleMenu" class="btn btn-primary mb-3">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
         <header class="top-bar">
-            <h1>Xem Lương và Thuế TNCN</h1>
+            <h1><i class="fas fa-money-check-alt"></i> Báo Cáo Lương và Thuế TNCN</h1>
         </header>
 
         <div class="container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Mã Nhân Viên</th>
-                        <th>Họ và Tên</th>
-                        <th>Lương</th>
-                        <th>Thuế TNCN</th>
-                    </tr>
-                </thead>
-                <tbody id="salaryTableBody">
-                    <!-- Dữ liệu lương sẽ được thêm vào đây -->
-                </tbody>
-            </table>
+            <!-- Bộ lọc -->
+            <div class="salary-filter">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Năm</label>
+                            <select class="form-control" id="yearSelect">
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Tháng</label>
+                            <select class="form-control" id="monthSelect">
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Nhân viên</label>
+                            <select class="form-control" id="employeeSelect">
+                                <option value="">Tất cả nhân viên</option>
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Tìm kiếm</label>
+                            <input type="text" class="form-control" id="searchInput"
+                                placeholder="Tìm theo tên hoặc mã NV...">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button class="btn btn-primary btn-block" onclick="window.print()">
+                                <i class="fas fa-print"></i> In báo cáo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tổng quan -->
+            <div class="summary-section">
+                <h4 class="mb-4">Tổng quan tháng <span id="selectedMonth"></span>/<span id="selectedYear"></span></h4>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="summary-card">
+                            <h5>Tổng lương</h5>
+                            <h3 id="totalSalary">0 VNĐ</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-card">
+                            <h5>Tổng thuế TNCN</h5>
+                            <h3 id="totalTax">0 VNĐ</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-card">
+                            <h5>Tổng thực lĩnh</h5>
+                            <h3 id="totalNet">0 VNĐ</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-card">
+                            <h5>Số nhân viên</h5>
+                            <h3 id="employeeCount">0</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bảng chi tiết -->
+            <div class="table-container">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Chi tiết lương và thuế</h4>
+                    <button class="btn btn-primary no-print" onclick="window.print()">
+                        <i class="fas fa-print"></i> In báo cáo
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã NV</th>
+                                <th>Họ và Tên</th>
+                                <th>Lương cơ bản</th>
+                                <th>Phụ cấp</th>
+                                <th>Tổng thu nhập</th>
+                                <th>Thuế TNCN</th>
+                                <th>Thực lãnh</th>
+                                <th class="no-print">Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salaryReportTableBody">
+                            <!-- Sẽ được điền bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Chi tiết lương -->
+        <div class="modal fade" id="salaryDetailModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="fas fa-file-invoice-dollar"></i> Chi Tiết Lương
+                        </h5>
+                    </div>
+                    <div class="modal-body" id="salaryDetailContent">
+                        <!-- Sẽ được điền bằng JavaScript -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../../js/salary-report.js"></script>
 </body>
 

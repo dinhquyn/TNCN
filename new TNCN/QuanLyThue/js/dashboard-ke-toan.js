@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Kiểm tra đăng nhập
+    // Kiểm tra đăng nhập và quyền truy cập
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser || currentUser.role !== 'nhan_vien') {
+    if (!currentUser || currentUser.role !== 'ke_toan') {
         window.location.href = '../../index.html';
         return;
     }
@@ -9,70 +9,62 @@ document.addEventListener('DOMContentLoaded', function () {
     // Cập nhật tên người dùng
     document.getElementById('userName').textContent = currentUser.fullName;
 
-    // Cập nhật ngày hiện tại
-    updateCurrentDate();
-
-    // Load dữ liệu
+    // Load dữ liệu dashboard
     loadDashboardData();
 
-    // Xử lý đăng xuất
-    document.getElementById('logoutBtn').addEventListener('click', logout);
+    // Xử lý responsive menu
+    document.getElementById('toggleMenu')?.addEventListener('click', function () {
+        document.querySelector('.sidebar').classList.toggle('active');
+        document.querySelector('.main-content').classList.toggle('shifted');
+    });
 });
 
-function updateCurrentDate() {
-    const currentDate = new Date();
-    const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
-    document.getElementById('currentDate').textContent =
-        currentDate.toLocaleDateString('vi-VN', options);
-}
-
 function loadDashboardData() {
-    // Khởi tạo dữ liệu mẫu
+    // Dữ liệu mẫu
     const mockData = {
-        totalEmployees: 5,
-        totalSalary: 85000000,
-        totalTax: 4200000,
-        completedReports: 12,
+        totalEmployees: 150,
+        totalDepartments: 8,
+        totalSalary: 3500000000,
+        totalTax: 350000000,
         recentActivities: [
             {
                 type: 'salary',
-                description: 'Đã cập nhật bảng lương tháng 12/2023',
+                description: 'Đã nhập lương tháng 12/2023',
                 time: '2 giờ trước'
             },
             {
-                type: 'employee',
-                description: 'Thêm nhân viên mới: Nguyễn Văn A',
+                type: 'tax',
+                description: 'Tính thuế TNCN tháng 12/2023',
+                time: '3 giờ trước'
+            },
+            {
+                type: 'department',
+                description: 'Cập nhật thông tin Phòng Kỹ thuật',
                 time: '1 ngày trước'
             },
             {
-                type: 'tax',
-                description: 'Hoàn thành quyết toán thuế năm 2023',
+                type: 'deduction',
+                description: 'Cập nhật mức giảm trừ gia cảnh',
                 time: '2 ngày trước'
             },
             {
                 type: 'report',
-                description: 'Xuất báo cáo thuế TNCN quý 4/2023',
+                description: 'Xuất báo cáo thuế tháng 11/2023',
                 time: '3 ngày trước'
             }
         ]
     };
 
-    // Cập nhật thống kê
+    // Cập nhật giao diện
     updateDashboardStats(mockData);
-    // Cập nhật hoạt động gần đây
     updateRecentActivities(mockData.recentActivities);
 }
 
 function updateDashboardStats(data) {
     document.getElementById('totalEmployees').textContent = data.totalEmployees;
+    document.getElementById('totalDepartments').textContent = data.totalDepartments;
     document.getElementById('totalSalary').textContent = formatCurrency(data.totalSalary);
     document.getElementById('totalTax').textContent = formatCurrency(data.totalTax);
-    document.getElementById('completedReports').textContent = data.completedReports;
 }
 
 function updateRecentActivities(activities) {
@@ -99,9 +91,10 @@ function updateRecentActivities(activities) {
 function getActivityIcon(type) {
     const icons = {
         salary: 'fas fa-money-bill-wave text-success',
-        employee: 'fas fa-user-plus text-primary',
         tax: 'fas fa-file-invoice-dollar text-warning',
-        report: 'fas fa-file-alt text-info'
+        department: 'fas fa-building text-primary',
+        deduction: 'fas fa-percentage text-info',
+        report: 'fas fa-file-alt text-secondary'
     };
     return icons[type] || 'fas fa-info-circle';
 }
@@ -111,15 +104,4 @@ function formatCurrency(amount) {
         style: 'currency',
         currency: 'VND'
     }).format(amount);
-}
-
-// Xử lý responsive menu
-document.getElementById('toggleMenu')?.addEventListener('click', function () {
-    document.querySelector('.sidebar').classList.toggle('active');
-    document.querySelector('.main-content').classList.toggle('shifted');
-});
-
-function logout() {
-    localStorage.removeItem('currentUser');
-    window.location.href = '../../index.html';
 }

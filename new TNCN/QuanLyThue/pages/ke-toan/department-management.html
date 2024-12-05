@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Phòng Ban - Phòng Kế Toán</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .department-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+
+        .main-content {
+            padding: 20px;
+            height: 100vh;
+            /* overflow: hidden; */
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .department-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .department-header {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .department-body {
+            padding: 15px;
+        }
+
+        .department-footer {
+            padding: 15px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+
+        .employee-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .employee-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .employee-item:last-child {
+            border-bottom: none;
+        }
+
+        .action-buttons .btn {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="user-info text-center">
+            <h3>Kế Toán</h3>
+            <p id="userName">Chào mừng bạn!</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
+            <li><a href="department-management.html" class="active"><span>Quản lý phòng ban</span></a></li>
+            <li><a href="salary-input.html"><span>Nhập lương hàng tháng</span></a></li>
+            <li><a href="tax-calculation.html"><span>Tính thuế</span></a></li>
+            <li><a href="deduction-setup.html"><span>Thiết lập miễn giảm trừ</span></a></li>
+            <li><a href="personal-info.html"><span>Thông tin cá nhân</span></a></li>
+            <li><a href="salary-tax-report.html"><span>Xem lương và thuế</span></a></li>
+            <li><a href="annual-tax-report.html"><span>Quyết toán thuế năm</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Quản Lý Phòng Ban</h2>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addDepartmentModal">
+                    <i class="fas fa-plus"></i> Thêm Phòng Ban
+                </button>
+            </div>
+
+            <!-- Danh sách phòng ban -->
+            <div class="row" id="departmentList">
+                <!-- Sẽ được điền bằng JavaScript -->
+            </div>
+        </div>
+
+        <!-- Modal Thêm/Sửa Phòng Ban -->
+        <div class="modal fade" id="addDepartmentModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm Phòng Ban Mới</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="departmentForm">
+                            <div class="form-group">
+                                <label>Mã phòng ban</label>
+                                <input type="text" class="form-control" id="departmentId" required>
+                                <small class="text-danger" id="departmentIdError"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>Tên phòng ban</label>
+                                <input type="text" class="form-control" id="departmentName" required>
+                                <small class="text-danger" id="departmentNameError"></small>
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea class="form-control" id="departmentDescription" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Trưởng phòng</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="managerName"
+                                            placeholder="Tên trưởng phòng">
+                                        <small class="text-danger" id="managerNameError"></small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="managerId"
+                                            placeholder="Mã nhân viên">
+                                        <small class="text-danger" id="managerIdError"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="saveDepartment">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Xác nhận xóa -->
+        <div class="modal fade" id="deleteDepartmentModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xác nhận xóa</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xóa phòng ban này?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Xem Danh Sách Nhân Viên -->
+        <div class="modal fade" id="employeeListModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Danh Sách Nhân Viên</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="department-info mb-4">
+                            <h6 class="text-primary" id="modalDepartmentName"></h6>
+                            <p class="text-muted mb-0" id="modalDepartmentInfo"></p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Mã NV</th>
+                                        <th>Họ và tên</th>
+                                        <th>Chức vụ</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="employeeListBody">
+                                    <!-- Sẽ được điền bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#addEmployeeModal">
+                            <i class="fas fa-user-plus"></i> Thêm nhân viên
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Thêm Nhân Viên Vào Phòng Ban -->
+        <div class="modal fade" id="addEmployeeModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thêm Nhân Viên Vào Phòng Ban</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Chọn nhân viên</label>
+                            <select class="form-control" id="employeeSelect">
+                                <option value="">Chọn nhân viên...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="addEmployeeToDepartment">Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../js/department-management.js"></script>
+</body>
+
+</html>

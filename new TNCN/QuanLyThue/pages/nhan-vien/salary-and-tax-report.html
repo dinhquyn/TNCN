@@ -4,89 +4,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xem Lương và Thuế Từng Tháng - Nhân Viên</title>
+    <title>Lương và Thuế TNCN</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="../../css/salary-and-tax-report.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .salary-filter {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .salary-summary {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .table-responsive {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .salary-details {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        @media print {
+
+            .sidebar,
+            .salary-filter,
+            .no-print {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 0 !important;
+            }
+        }
+
+        /* Sửa lại style cho modal */
+        .modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .modal.show {
+            display: block;
+        }
+
+        .modal-dialog {
+            position: relative;
+            width: auto;
+            margin: 1.75rem auto;
+            max-width: 80%;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            border-radius: 0.3rem;
+            margin: 2rem auto;
+            max-width: 100%;
+        }
+
+        .modal-body {
+            position: relative;
+            padding: 1rem;
+            max-height: calc(100vh - 210px);
+            overflow-y: auto;
+        }
+
+        /* Cho phép scroll trang khi modal mở */
+        body.modal-open {
+            overflow: auto !important;
+            padding-right: 0 !important;
+        }
+
+        /* Style cho header và footer của modal */
+        .modal-header,
+        .modal-footer {
+            background-color: #f8f9fa;
+            padding: 1rem;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #dee2e6;
+        }
+
+        /* Style cho bảng */
+        .table-responsive {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Đảm bảo main content luôn có thể scroll */
+        .main-content {
+            position: relative;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        /* Xóa các style không cần thiết */
+        .modal-open .modal {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="sidebar">
-        <div class="user-info">
-            <img src="../../assets/images/avatar.png" alt="Avatar" class="avatar">
-            <h3 id="userName">Nguyễn Văn A</h3>
-            <p>Nhân viên</p>
+        <div class="user-info text-center">
+            <h3>Nhân viên</h3>
+            <p id="employeeName">Chào mừng bạn!</p>
         </div>
-
         <ul class="nav-links">
-            <li class="active">
-                <a href="dashboard.html">
-                    <span>Trang chủ</span>
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <span>Thông tin cá nhân</span>
-                </a>
-            </li>
-            <li>
-                <a href="salary-and-tax-report.html">
-                    <span>Xem lương và Thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="tax-report.html">
-                    <span>Quyết toán thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="tax-calculator.html">
-                    <span>Thử Thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" id="logoutBtn">
-                    <span>Đăng xuất</span>
-                </a>
-            </li>
+            <li><a href="dashboard.html" class=""><span>Trang chủ</span></a></li>
+            <li><a href="salary-and-tax-report.html" class="active"><span>Xem lương và thuế TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><span>Xem quyết toán thuế thu nhập cả năm</span></a></li>
+            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
+            <li><a href="tax-calculator.html" class=""><span>Tính thử thuế TNCN</span></a></li>
+            <li><a href="#" id="logoutBtn"><span>Đăng xuất</span></a></li>
         </ul>
     </nav>
-    <div class="container">
-        <!-- Sidebar - Copy từ dashboard.html -->
 
+    <main class="main-content">
+        <div class="d-block d-md-none">
+            <button id="toggleMenu" class="btn btn-primary mb-3">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-bar">
-                <h1>Xem Lương và Thuế Từng Tháng</h1>
-                <div class="user-menu">
-                    <span id="currentDate"></span>
+        <header class="top-bar">
+            <h1><i class="fas fa-money-check-alt"></i> Lương và Thuế TNCN</h1>
+        </header>
+
+        <div class="container">
+            <!-- Bộ lọc -->
+            <div class="salary-filter">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Tháng</label>
+                            <select class="form-control" id="monthSelect">
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Năm</label>
+                            <select class="form-control" id="yearSelect">
+                                <!-- Sẽ được điền bằng JavaScript -->
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </header>
-
-            <div class="salary-tax-report-content">
-                <h2 class="h5">Thông tin lương và thuế từng tháng</h2>
-                <table id="salaryTaxTable">
-                    <thead>
-                        <tr>
-                            <th>Tháng</th>
-                            <th>Lương cơ bản</th>
-                            <th>Phụ cấp</th>
-                            <th>Tổng thu nhập</th>
-                            <th>Giảm trừ</th>
-                            <th>Thuế TNCN phải nộp</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dữ liệu lương và thuế sẽ được thêm bằng JavaScript -->
-                    </tbody>
-                </table>
             </div>
-        </main>
+
+            <!-- Tổng quan -->
+            <div class="salary-summary">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="summary-card">
+                            <h5>Tổng thu nhập</h5>
+                            <h3 id="totalIncome">0 VNĐ</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="summary-card">
+                            <h5>Tổng khấu trừ</h5>
+                            <h3 id="totalDeduction">0 VNĐ</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="summary-card">
+                            <h5>Thực lãnh</h5>
+                            <h3 id="netSalary">0 VNĐ</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chi tiết lương -->
+            <div class="table-container">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Chi tiết lương tháng</h4>
+                    <button class="btn btn-primary no-print" onclick="window.print()">
+                        <i class="fas fa-print"></i> In báo cáo
+                    </button>
+                </div>
+                <div class="salary-details" id="salaryDetails">
+                    <!-- Chi tiết lương sẽ được điền bằng JavaScript -->
+                </div>
+            </div>
+
+            <!-- Bảng lương các tháng -->
+            <div class="table-container mt-4">
+                <h4>Lịch sử lương</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tháng/Năm</th>
+                                <th>Lương cơ bản</th>
+                                <th>Phụ cấp</th>
+                                <th>Tổng thu nhập</th>
+                                <th>Thuế TNCN</th>
+                                <th>Thực lãnh</th>
+                                <th class="no-print">Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salaryHistoryBody">
+                            <!-- Sẽ được điền bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Thêm modal chi tiết vào cuối file, trước các thẻ script -->
+    <div class="modal fade" id="salaryDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi Tiết Lương và Thuế</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body" id="salaryDetailContent">
+                    <!-- Sẽ được điền bằng JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="../../js/salary-and-tax-report.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../js/employee-salary-report.js"></script>
 </body>
 
 </html>

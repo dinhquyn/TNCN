@@ -1,17 +1,17 @@
-// Dữ liệu giả lập thông tin cá nhân
-const mockProfile = {
-    employeeId: "TP001",
-    fullName: "Nguyễn Văn An",
-    position: "Trưởng Phòng Kế Toán",
+// Dữ liệu giả lập thông tin nhân viên
+const mockEmployeeProfile = {
+    employeeId: "NV001",
+    fullName: "Hoàng Trọng Đức",
+    position: "Nhân viên kế toán",
     email: "nguyenvanan@company.com",
     phone: "0901234567",
-    address: "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+    address: "Phường Yên Nghĩa, Quận Hà Đông, TP Hà Nội",
     taxId: "8751234567",
     avatar: "../../assets/images/avatar-default.png",
-    password: "Admin@123"
+    password: "Nhanvien@123" // Mật khẩu mặc định
 };
 
-// Thêm regex cho validate mật khẩu
+// Regex cho validate mật khẩu
 const PASSWORD_REGEX = {
     minLength: 8,
     hasUpperCase: /[A-Z]/,
@@ -28,26 +28,27 @@ document.addEventListener('DOMContentLoaded', function () {
     // const passwordNote = document.createElement('div');
     // passwordNote.className = 'alert alert-info mt-3';
     // passwordNote.innerHTML = `
-    //     <strong>Lưu ý:</strong> Mật khẩu mặc định của bạn là <code>${mockProfile.password}</code>
+    //     <strong>Lưu ý:</strong> Mật khẩu mặc định của bạn là <code>${mockEmployeeProfile.password}</code>
     //     <br>
-    //     <small>Vui lòng đổi mật khẩu để b��o mật tài khoản.</small>
+    //     <small>Vui lòng đổi mật khẩu để bảo mật tài khoản.</small>
     // `;
     // document.querySelector('.change-password-section').prepend(passwordNote);
 });
 
 function loadProfile() {
     // Hiển thị thông tin cá nhân
-    document.getElementById('profileName').textContent = mockProfile.fullName;
-    document.getElementById('profilePosition').textContent = mockProfile.position;
-    document.getElementById('profileAvatar').src = mockProfile.avatar;
+    document.getElementById('employeeName').textContent = mockEmployeeProfile.fullName;
+    document.getElementById('profileName').textContent = mockEmployeeProfile.fullName;
+    document.getElementById('profilePosition').textContent = mockEmployeeProfile.position;
+    document.getElementById('profileAvatar').src = mockEmployeeProfile.avatar;
 
     // Điền thông tin vào form
-    document.getElementById('employeeId').value = mockProfile.employeeId;
-    document.getElementById('fullName').value = mockProfile.fullName;
-    document.getElementById('email').value = mockProfile.email;
-    document.getElementById('phone').value = mockProfile.phone;
-    document.getElementById('address').value = mockProfile.address;
-    document.getElementById('taxId').value = mockProfile.taxId;
+    document.getElementById('employeeId').value = mockEmployeeProfile.employeeId;
+    document.getElementById('fullName').value = mockEmployeeProfile.fullName;
+    document.getElementById('email').value = mockEmployeeProfile.email;
+    document.getElementById('phone').value = mockEmployeeProfile.phone;
+    document.getElementById('address').value = mockEmployeeProfile.address;
+    document.getElementById('taxId').value = mockEmployeeProfile.taxId;
 
     // Disable các trường input
     disableFormFields();
@@ -86,7 +87,7 @@ function setupEventListeners() {
         window.location.href = '../../index.html';
     });
 
-    // Thêm validate cho email
+    // Validate email
     const emailInput = document.getElementById('email');
     emailInput.addEventListener('input', function () {
         if (this.disabled) return;
@@ -100,7 +101,7 @@ function setupEventListeners() {
         }
     });
 
-    // Thêm validate cho số điện thoại
+    // Validate số điện thoại
     const phoneInput = document.getElementById('phone');
     phoneInput.addEventListener('input', function () {
         if (this.disabled) return;
@@ -117,7 +118,7 @@ function setupEventListeners() {
         }
     });
 
-    // Thêm validate realtime cho mật khẩu mới
+    // Validate mật khẩu mới realtime
     const newPasswordInput = document.getElementById('newPassword');
     newPasswordInput.addEventListener('input', function () {
         const errors = validatePassword(this.value);
@@ -128,7 +129,7 @@ function setupEventListeners() {
         }
     });
 
-    // Thêm validate realtime cho xác nhận mật khẩu
+    // Validate xác nhận mật khẩu realtime
     const confirmPasswordInput = document.getElementById('confirmPassword');
     confirmPasswordInput.addEventListener('input', function () {
         const newPassword = document.getElementById('newPassword').value;
@@ -138,19 +139,9 @@ function setupEventListeners() {
             clearError(this);
         }
     });
-
-    // Đảm bảo các trường mật khẩu luôn có thể nhập
-    const passwordFields = ['currentPassword', 'newPassword', 'confirmPassword'];
-    passwordFields.forEach(fieldId => {
-        const input = document.getElementById(fieldId);
-        if (input) {
-            input.disabled = false;
-        }
-    });
 }
 
 function enableFormFields() {
-    // Chỉ enable các trường có thể chỉnh sửa
     const editableFields = ['email', 'phone', 'address'];
     editableFields.forEach(fieldId => {
         const input = document.getElementById(fieldId);
@@ -162,7 +153,6 @@ function enableFormFields() {
 }
 
 function disableFormFields() {
-    // Chỉ disable các trường thông tin cá nhân, không disable các trường mật khẩu
     const profileInputs = [
         'employeeId',
         'fullName',
@@ -209,9 +199,9 @@ function saveProfile() {
     }
 
     // Nếu tất cả hợp lệ thì lưu thông tin
-    mockProfile.email = email;
-    mockProfile.phone = phone;
-    mockProfile.address = address;
+    mockEmployeeProfile.email = email;
+    mockEmployeeProfile.phone = phone;
+    mockEmployeeProfile.address = address;
 
     // Disable form và ẩn nút lưu/hủy
     disableFormFields();
@@ -238,8 +228,8 @@ function changePassword() {
     }
 
     // Kiểm tra mật khẩu hiện tại
-    if (currentPassword.value !== mockProfile.password) {
-        showError(currentPassword, `Mật khẩu hiện tại không đúng (Mật khẩu mặc định: ${mockProfile.password})`);
+    if (currentPassword.value !== mockEmployeeProfile.password) {
+        showError(currentPassword, `Mật khẩu hiện tại không đúng (Mật khẩu mặc định: ${mockEmployeeProfile.password})`);
         return;
     }
 
@@ -268,7 +258,6 @@ function changePassword() {
     }
 
     // Nếu tất cả hợp lệ
-    // Giả lập đổi mật khẩu thành công
     alert('Đổi mật khẩu thành công! Vui lòng đăng nhập lại.');
 
     // Reset form
@@ -282,7 +271,7 @@ function changePassword() {
     }, 1000);
 }
 
-// Thêm các hàm validate
+// Các hàm validate
 function isValidEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return emailRegex.test(email);
@@ -293,7 +282,6 @@ function isValidPhone(phone) {
     return phoneRegex.test(phone);
 }
 
-// Thêm hàm validate mật khẩu
 function validatePassword(password) {
     const errors = [];
 
@@ -320,7 +308,7 @@ function validatePassword(password) {
     return errors;
 }
 
-// Thêm hàm hiển thị lỗi
+// Hiển thị và xóa lỗi
 function showError(inputElement, message) {
     let errorDiv = inputElement.nextElementSibling;
     if (!errorDiv || !errorDiv.classList.contains('error-message')) {
@@ -328,15 +316,14 @@ function showError(inputElement, message) {
         errorDiv.className = 'error-message text-danger small mt-1';
         inputElement.parentNode.appendChild(errorDiv);
     }
-    errorDiv.innerHTML = message; // Thay đổi textContent thành innerHTML để hỗ trợ <br>
+    errorDiv.innerHTML = message;
     inputElement.classList.add('is-invalid');
 }
 
-// Thêm hàm xóa lỗi
 function clearError(inputElement) {
     const errorDiv = inputElement.nextElementSibling;
     if (errorDiv && errorDiv.classList.contains('error-message')) {
         errorDiv.textContent = '';
     }
     inputElement.classList.remove('is-invalid');
-}
+} 

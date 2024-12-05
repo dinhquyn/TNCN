@@ -32,13 +32,11 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const role = document.getElementById('role').value;
 
     // Kiểm tra đăng nhập
     const user = users.find(u =>
         u.username === username &&
-        u.password === password &&
-        u.role === role
+        u.password === password
     );
 
     if (user) {
@@ -59,6 +57,9 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
                 break;
             case 'ke_toan':
                 window.location.href = 'pages/ke-toan/dashboard.html';
+                break;
+            default:
+                alert('Vai trò không hợp lệ!');
                 break;
         }
     } else {

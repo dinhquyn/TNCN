@@ -4,10 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Trưởng Phòng</title>
+    <title>Trang Chủ - Trưởng Phòng</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .dashboard-stats {
+            padding: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        .quick-actions {
+            margin-top: 30px;
+        }
+
+        .action-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            background: #e9ecef;
+            cursor: pointer;
+        }
+
+        .action-icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .recent-activities {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .welcome-section {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,51 +103,125 @@
             <p>Chào mừng bạn!</p>
         </div>
         <ul class="nav-links">
-            <li>
-                <a href="employee-management.html">
-                    <span>Quản lý nhân viên</span>
-                </a>
-            </li>
-            <li>
-                <a href="salary-report.html">
-                    <span>Xem lương và thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="tax-report.html">
-                    <span>Xem quyết toán thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="annual-tax-report.html">
-                    <span>Xem quyết toán thuế cuối năm</span>
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <span>Thông tin cá nhân</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" id="logoutBtn">
-                    <span>Đăng xuất</span>
-                </a>
-            </li>
+            <li><a href="dashboard.html" class="active"><span>Trang chủ</span></a></li>
+            <li><a href="employee-management.html"><span>Quản lý nhân viên</span></a></li>
+            <li><a href="salary-report.html"><span>Xem lương và thuế TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><span>Xem quyết toán thuế cuối năm</span></a></li>
+            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
         </ul>
     </nav>
 
     <main class="main-content">
-        <header class="top-bar">
-            <h1>Dashboard Trưởng Phòng</h1>
-        </header>
+        <div class="d-block d-md-none">
+            <button id="toggleMenu" class="btn btn-primary mb-3">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
 
         <div class="container">
-            <h2>Chức năng</h2>
-            <p>Chọn chức năng từ menu bên trái để quản lý nhân viên và xem thông tin liên quan.</p>
+            <!-- Phần chào mừng -->
+            <div class="welcome-section">
+                <h2><i class="fas fa-user-tie"></i> Xin chào, Trưởng phòng!</h2>
+                <p>Chào mừng bạn đến với hệ thống quản lý thuế thu nhập cá nhân</p>
+            </div>
+
+            <!-- Thống kê tổng quan -->
+            <div class="dashboard-stats">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-number" id="totalEmployees">5</div>
+                            <div class="stat-label">Tổng số nhân viên</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="stat-number" id="totalSalary">0 VNĐ</div>
+                            <div class="stat-label">Tổng quỹ lương</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <div class="stat-number" id="totalTax">0 VNĐ</div>
+                            <div class="stat-label">Tổng thuế TNCN</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card text-center">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-number" id="completedReports">0</div>
+                            <div class="stat-label">Báo cáo hoàn thành</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Truy cập nhanh -->
+            <div class="quick-actions">
+                <h4 class="mb-4">Truy cập nhanh</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="employee-management.html" class="text-decoration-none">
+                            <div class="action-card text-center">
+                                <div class="action-icon">
+                                    <i class="fas fa-user-cog"></i>
+                                </div>
+                                <h5>Quản lý nhân viên</h5>
+                                <p class="mb-0">Xem và quản lý thông tin nhân viên</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="salary-report.html" class="text-decoration-none">
+                            <div class="action-card text-center">
+                                <div class="action-icon">
+                                    <i class="fas fa-money-check-alt"></i>
+                                </div>
+                                <h5>Báo cáo lương</h5>
+                                <p class="mb-0">Xem báo cáo lương và thuế TNCN</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="annual-tax-report.html" class="text-decoration-none">
+                            <div class="action-card text-center">
+                                <div class="action-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h5>Quyết toán thuế</h5>
+                                <p class="mb-0">Xem quyết toán thuế cuối năm</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hoạt động gần đây -->
+            <div class="recent-activities">
+                <h4 class="mb-4">Hoạt động gần đây</h4>
+                <div class="activity-list" id="activityList">
+                    <!-- Sẽ được điền bằng JavaScript -->
+                </div>
+            </div>
         </div>
     </main>
 
-    <script src="../../js/dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../js/dashboard-truong-phong.js"></script>
 </body>
 
 </html>
