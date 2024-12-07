@@ -18,6 +18,14 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
+        .main-content {
+            padding: 20px;
+            height: 100vh;
+            /* overflow: hidden; */
+            display: flex;
+            flex-direction: column;
+        }
+
         .salary-summary {
             background: white;
             padding: 20px;
@@ -38,12 +46,6 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-        }
-
-        .table-responsive {
-            max-height: 500px;
-            overflow-y: auto;
         }
 
         .salary-details {
@@ -64,85 +66,6 @@
                 padding: 0 !important;
             }
         }
-
-        /* Sửa lại style cho modal */
-        .modal {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1050;
-            overflow-y: auto;
-            display: none;
-        }
-
-        .modal.show {
-            display: block;
-        }
-
-        .modal-dialog {
-            position: relative;
-            width: auto;
-            margin: 1.75rem auto;
-            max-width: 80%;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: #fff;
-            border-radius: 0.3rem;
-            margin: 2rem auto;
-            max-width: 100%;
-        }
-
-        .modal-body {
-            position: relative;
-            padding: 1rem;
-            max-height: calc(100vh - 210px);
-            overflow-y: auto;
-        }
-
-        /* Cho phép scroll trang khi modal mở */
-        body.modal-open {
-            overflow: auto !important;
-            padding-right: 0 !important;
-        }
-
-        /* Style cho header và footer của modal */
-        .modal-header,
-        .modal-footer {
-            background-color: #f8f9fa;
-            padding: 1rem;
-        }
-
-        .modal-header {
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .modal-footer {
-            border-top: 1px solid #dee2e6;
-        }
-
-        /* Style cho bảng */
-        .table-responsive {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        /* Đảm bảo main content luôn có thể scroll */
-        .main-content {
-            position: relative;
-            height: 100%;
-            overflow-y: auto;
-        }
-
-        /* Xóa các style không cần thiết */
-        .modal-open .modal {
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
     </style>
 </head>
 
@@ -153,12 +76,17 @@
             <p id="employeeName">Chào mừng bạn!</p>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html" class=""><span>Trang chủ</span></a></li>
-            <li><a href="salary-and-tax-report.html" class="active"><span>Xem lương và thuế TNCN</span></a></li>
-            <li><a href="annual-tax-report.html"><span>Xem quyết toán thuế thu nhập cả năm</span></a></li>
-            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
-            <li><a href="tax-calculator.html" class=""><span>Tính thử thuế TNCN</span></a></li>
-            <li><a href="#" id="logoutBtn"><span>Đăng xuất</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
+            <li><a href="salary-and-tax-report.html" class="active"><i class="fas fa-file-alt"></i><span>Xem lương và
+                        thuế
+                        TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><i class="fas fa-money-bill-wave"></i><span>Xem quyết toán thuế thu
+                        nhập cả năm</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Thông tin cá nhân</span></a></li>
+            <li><a href="tax-calculator.html" class=""><i class="fas fa-calculator"></i> <span>Tính thử thuế
+                        TNCN</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
+            </li>
         </ul>
     </nav>
 
@@ -257,26 +185,6 @@
             </div>
         </div>
     </main>
-
-    <!-- Thêm modal chi tiết vào cuối file, trước các thẻ script -->
-    <div class="modal fade" id="salaryDetailModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Chi Tiết Lương và Thuế</h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button> -->
-                </div>
-                <div class="modal-body" id="salaryDetailContent">
-                    <!-- Sẽ được điền bằng JavaScript -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

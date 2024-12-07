@@ -18,6 +18,15 @@
             margin-bottom: 20px;
         }
 
+        .main-content {
+            padding: 20px;
+            height: 100vh;
+            /* overflow: hidden; */
+            display: flex;
+            flex-direction: column;
+        }
+
+
         .result-section {
             background: #f8f9fa;
             padding: 20px;
@@ -58,12 +67,16 @@
             <p id="userName">Chào mừng bạn!</p>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
-            <li><a href="salary-and-tax-report.html"><span>Xem lương và thuế TNCN</span></a></li>
-            <li><a href="annual-tax-report.html"><span>Xem quyết toán thuế thu nhập cả năm</span></a></li>
-            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
-            <li><a href="tax-calculator.html" class="active"><span>Tính thử thuế TNCN</span></a></li>
-            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
+            <li><a href="salary-and-tax-report.html"><i class="fas fa-file-alt"></i><span>Xem lương và thuế
+                        TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><i class="fas fa-money-bill-wave"></i><span>Xem quyết toán thuế thu
+                        nhập cả năm</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Thông tin cá nhân</span></a></li>
+            <li><a href="tax-calculator.html" class="active"><i class="fas fa-calculator"></i><span>Tính thử thuế
+                        TNCN</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
+            </li>
         </ul>
     </nav>
 

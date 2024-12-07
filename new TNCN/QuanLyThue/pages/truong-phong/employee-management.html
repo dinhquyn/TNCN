@@ -18,6 +18,14 @@
             border-left: 4px solid #007bff;
         }
 
+        .main-content {
+            padding: 20px;
+            height: 100vh;
+            /* overflow: hidden; */
+            display: flex;
+            flex-direction: column;
+        }
+
         .department-info h4 {
             color: #2c3e50;
             margin-bottom: 5px;
@@ -147,31 +155,14 @@
             <p>Chào mừng bạn!</p>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
-            <li>
-                <a href="employee-management.html" class="active">
-                    <span>Quản lý nhân viên</span>
-                </a>
-            </li>
-            <li>
-                <a href="salary-report.html">
-                    <span>Xem lương và thuế TNCN</span>
-                </a>
-            </li>
-            <li>
-                <a href="annual-tax-report.html">
-                    <span>Xem quyết toán thuế cuối năm</span>
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <span>Thông tin cá nhân</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" id="logoutBtn">
-                    <span>Đăng xuất</span>
-                </a>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
+            <li><a href="employee-management.html" class="active"><i class="fas fa-users"></i><span>Quản lý nhân
+                        viên</span></a></li>
+            <li><a href="salary-report.html"><i class="fas fa-file-alt"></i><span>Xem lương và thuế TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><i class="fas fa-money-bill-wave"></i><span>Xem quyết toán thuế cuối
+                        năm</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Thông tin cá nhân</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
             </li>
         </ul>
     </nav>
@@ -228,7 +219,6 @@
                         <h5 class="modal-title">
                             <i class="fas fa-user-edit"></i> Chỉnh Sửa Thông Tin Nhân Viên
                         </h5>
-
                     </div>
                     <div class="modal-body">
                         <form id="editEmployeeForm">
@@ -239,35 +229,45 @@
                                         <input type="text" class="form-control" id="editEmployeeId" readonly>
                                     </div>
                                     <div class="form-group">
-                                        <label><i class="fas fa-user"></i> Họ và Tên</label>
+                                        <label><i class="fas fa-user"></i> Họ và tên <span
+                                                class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="editName" required>
+                                        <small class="text-danger" id="nameError"></small>
                                     </div>
                                     <div class="form-group">
-                                        <label><i class="fas fa-envelope"></i> Email</label>
+                                        <label><i class="fas fa-envelope"></i> Email <span
+                                                class="text-danger">*</span></label>
                                         <input type="email" class="form-control" id="editEmail" required>
+                                        <small class="text-danger" id="emailError"></small>
+                                        <small class="form-text text-muted">Ví dụ: example@domain.com</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label><i class="fas fa-phone"></i> Số Điện Thoại</label>
+                                        <label><i class="fas fa-phone"></i> Số điện thoại <span
+                                                class="text-danger">*</span></label>
                                         <input type="tel" class="form-control" id="editPhone" required>
+                                        <small class="text-danger" id="phoneError"></small>
+                                        <small class="form-text text-muted">10 số, bắt đầu bằng 03, 05, 07, 08,
+                                            09</small>
                                     </div>
                                     <div class="form-group">
-                                        <label><i class="fas fa-map-marker-alt"></i> Địa Chỉ</label>
-                                        <input type="text" class="form-control" id="editAddress" required>
+                                        <label><i class="fas fa-map-marker-alt"></i> Địa chỉ</label>
+                                        <input type="text" class="form-control" id="editAddress">
+                                        <small class="text-danger" id="addressError"></small>
                                     </div>
                                     <div class="form-group">
-                                        <label><i class="fas fa-file-invoice"></i> Mã Số Thuế</label>
+                                        <label><i class="fas fa-file-invoice"></i> Mã số thuế</label>
                                         <input type="text" class="form-control" id="editTaxId">
+                                        <small class="text-danger" id="taxIdError"></small>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-primary" id="saveEditBtn">
-                            <i class="fas fa-save"></i> Lưu Thay Đổi
+                            <i class="fas fa-save"></i> Lưu thay đổi
                         </button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">
                             <i class="fas fa-times"></i> Đóng

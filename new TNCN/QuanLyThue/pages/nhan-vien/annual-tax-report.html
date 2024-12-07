@@ -18,6 +18,14 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
+        .main-content {
+            padding: 20px;
+            height: 100vh;
+
+            display: flex;
+
+        }
+
         .summary-section {
             background: white;
             padding: 20px;
@@ -60,16 +68,20 @@
     <nav class="sidebar">
         <div class="user-info text-center">
             <h3>Nhân viên</h3>
-            <p id="userName">Chào mừng bạn!</p>
+            <p id="employeeName">Chào mừng bạn!</p>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
-            <li><a href="salary-and-tax-report.html"><span>Xem lương và thuế TNCN</span></a></li>
-            <li><a href="annual-tax-report.html" class="active"><span>Xem quyết toán thuế thu nhập cả năm</span></a>
+            <li><a href="dashboard.html" class=""><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
+            <li><a href="salary-and-tax-report.html"><i class="fas fa-file-alt"></i><span>Xem lương và thuế
+                        TNCN</span></a></li>
+            <li><a href="annual-tax-report.html" class="active"><i class="fas fa-money-bill-wave"></i><span>Xem quyết
+                        toán thuế thu
+                        nhập cả năm</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Thông tin cá nhân</span></a></li>
+            <li><a href="tax-calculator.html" class=""><i class="fas fa-calculator"></i> <span>Tính thử thuế
+                        TNCN</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
             </li>
-            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
-            <li><a href="tax-calculator.html" class=""><span>Tính thử thuế TNCN</span></a></li>
-            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
         </ul>
     </nav>
 
@@ -160,9 +172,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Chi Tiết Quyết Toán Thuế</h5>
-                        <button type="button" class="close" data-dismiss="modal">
+                        <!-- <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>
-                        </button>
+                        </button> -->
                     </div>
                     <div class="modal-body" id="detailModalContent">
                         <!-- Sẽ được điền bằng JavaScript -->

@@ -18,6 +18,14 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
+        .main-content {
+            padding: 20px;
+            height: 100vh;
+            /* overflow: hidden; */
+            display: flex;
+            flex-direction: column;
+        }
+
         .salary-summary {
             background: white;
             padding: 20px;
@@ -83,12 +91,15 @@
             <p>Chào mừng bạn!</p>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
-            <li><a href="employee-management.html"><span>Quản lý nhân viên</span></a></li>
-            <li><a href="salary-report.html" class="active"><span>Xem lương và thuế TNCN</span></a></li>
-            <li><a href="annual-tax-report.html"><span>Xem quyết toán thuế cuối năm</span></a></li>
-            <li><a href="profile.html"><span>Thông tin cá nhân</span></a></li>
-            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
+            <li><a href="employee-management.html"><i class="fas fa-users"></i><span>Quản lý nhân viên</span></a></li>
+            <li><a href="salary-report.html" class="active"><i class="fas fa-file-alt"></i><span>Xem lương và thuế
+                        TNCN</span></a></li>
+            <li><a href="annual-tax-report.html"><i class="fas fa-money-bill-wave"></i><span>Xem quyết toán thuế cuối
+                        năm</span></a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i><span>Thông tin cá nhân</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
+            </li>
         </ul>
     </nav>
 

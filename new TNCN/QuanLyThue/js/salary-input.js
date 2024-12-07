@@ -873,9 +873,7 @@ function showNotification(message, type = 'success') {
     notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 300px;';
     notification.innerHTML = `
         ${message}
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
+       
     `;
     document.body.appendChild(notification);
 

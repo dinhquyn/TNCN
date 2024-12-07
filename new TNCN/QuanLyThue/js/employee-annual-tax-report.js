@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Cập nhật tên người dùng
-    document.getElementById('userName').textContent = currentUser.fullName;
+    document.getElementById('employeeName').textContent = currentUser.fullName;
 
     initializeFilters();
     loadAnnualReport();
@@ -49,11 +49,323 @@ const mockTaxData = {
                     { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
                 ]
             },
+            3: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            4: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            6: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            6: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            7: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            8: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            9: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            10: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            11: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            12: {
+                totalIncome: 18500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
             // Thêm dữ liệu cho các tháng còn lại...
         }
     },
     2022: {
         // Dữ liệu cho năm 2022
+        employeeId: 'NV001',
+        months: {
+            1: {
+                totalIncome: 15000000,
+                totalDeduction: 11000000,
+                taxableIncome: 7000000,
+                tax: 150000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            2: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 150000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            3: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            4: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 220000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            6: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            6: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            7: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            8: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            9: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            10: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            11: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            12: {
+                totalIncome: 15500000,
+                totalDeduction: 11000000,
+                taxableIncome: 7500000,
+                tax: 200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                dependents: [
+                    { name: 'Nguyễn Thị X', relationship: 'Con', birthYear: '2015' }
+                ]
+            },
+            // Thêm dữ liệu cho các tháng còn lại...
+        }
     }
 };
 

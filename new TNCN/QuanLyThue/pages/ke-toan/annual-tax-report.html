@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quyết Toán Thuế Năm - Phòng Kế Toán</title>
+    <title>Quyết Toán Thuế Năm - Kế Toán</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navbar.css">
@@ -24,24 +24,6 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .report-section {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .table thead th {
-            position: sticky;
-            top: 0;
-            background: #f8f9fa;
-            z-index: 1;
-            font-weight: 600;
         }
 
         .summary-section {
@@ -53,35 +35,22 @@
         }
 
         .summary-card {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
             background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 15px;
         }
 
-        .summary-card h6 {
-            margin-bottom: 10px;
-            color: #2c3e50;
+        .table thead th {
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
         }
 
-        .summary-value {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1a73e8;
-        }
-
-        .action-buttons {
-            margin-bottom: 20px;
-        }
-
-        .btn-export {
-            background-color: #1a73e8;
-            color: white;
-        }
-
-        .btn-export:hover {
-            background-color: #1557b0;
-            color: white;
+        @media print {
+            .no-print {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -90,144 +59,129 @@
     <!-- Sidebar -->
     <nav class="sidebar">
         <div class="user-info text-center">
-            <h3>Kế Toán</h3>
-            <p id="userName">Chào mừng bạn!</p>
+            <h3>Kế toán</h3>
+            <p id="userName"></p>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
-            <li><a href="department-management.html"><span>Quản lý phòng ban</span></a></li>
-            <li><a href="salary-input.html"><span>Nhập lương hàng tháng</span></a></li>
-            <li><a href="tax-calculation.html"><span>Tính thuế</span></a></li>
-            <li><a href="deduction-setup.html"><span>Thiết lập miễn giảm trừ</span></a></li>
-            <li><a href="personal-info.html"><span>Thông tin cá nhân</span></a></li>
-            <li><a href="salary-tax-report.html"><span>Xem lương và thuế</span></a></li>
-            <li><a href="annual-tax-report.html" class="active"><span>Quyết toán thuế năm</span></a></li>
-            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
+            <li><a href="department-management.html"><i class="fas fa-building"></i><span>Quản lý phòng ban</span></a>
+            </li>
+            <li><a href="salary-input.html"><i class="fas fa-money-check-alt"></i><span>Nhập lương hàng tháng</span></a>
+            </li>
+            <li><a href="tax-calculation.html"><i class="fas fa-calculator"></i><span>Tính thuế</span></a></li>
+            <li><a href="deduction-setup.html"><i class="fas fa-cogs"></i><span>Thiết lập giảm trừ</span></a></li>
+            <li><a href="personal-info.html"><i class="fas fa-user"></i><span>Thông tin cá nhân</span></a></li>
+            <li><a href="salary-tax-report.html"><i class="fas fa-file-alt"></i><span>Xem lương và thuế của từng nhân
+                        viên</span></a></li>
+            <li><a href="annual-tax-report.html" class="active"><i class="fas fa-money-bill-wave"></i><span>Xem quyết
+                        toán
+                        thuế cuối năm</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
+            </li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container">
-            <h2 class="mb-4">Quyết Toán Thuế Thu Nhập Cá Nhân</h2>
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Quyết Toán Thuế Thu Nhập Cá Nhân</h2>
+                <button class="btn btn-primary no-print" onclick="window.print()">
+                    <i class="fas fa-print"></i> In báo cáo
+                </button>
+            </div>
 
             <!-- Bộ lọc -->
-            <div class="filter-section">
+            <div class="filter-section no-print">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Năm</label>
                             <select class="form-control" id="yearSelect">
-                                <option value="">Chọn năm</option>
+                                <!-- Sẽ được điền bằng JavaScript -->
                             </select>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Phòng ban</label>
-                            <select class="form-control" id="departmentSelect">
-                                <option value="">Tất cả phòng ban</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Tìm kiếm</label>
-                            <input type="text" class="form-control" id="searchInput"
-                                placeholder="Tên hoặc mã nhân viên">
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-right">
-                        <button class="btn btn-primary" id="generateReportBtn">
-                            <i class="fas fa-sync-alt"></i> Tạo báo cáo
-                        </button>
-                        <button class="btn btn-export" id="exportReportBtn">
-                            <i class="fas fa-file-export"></i> Xuất báo cáo
-                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Tổng quan -->
             <div class="summary-section">
-                <h5 class="mb-3">Tổng quan quyết toán</h5>
+                <h4 class="mb-4">Tổng quan quyết toán thuế</h4>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="summary-card">
                             <h6>Tổng thu nhập</h6>
-                            <div class="summary-value" id="totalIncome">0 ₫</div>
+                            <h4 id="totalIncome">0 VNĐ</h4>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="summary-card">
                             <h6>Tổng giảm trừ</h6>
-                            <div class="summary-value" id="totalDeduction">0 ₫</div>
+                            <h4 id="totalDeduction">0 VNĐ</h4>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="summary-card">
                             <h6>Thu nhập tính thuế</h6>
-                            <div class="summary-value" id="taxableIncome">0 ₫</div>
+                            <h4 id="taxableIncome">0 VNĐ</h4>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="summary-card">
                             <h6>Tổng thuế TNCN</h6>
-                            <div class="summary-value" id="totalTax">0 ₫</div>
+                            <h4 id="totalTax">0 VNĐ</h4>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Bảng chi tiết -->
-            <div class="report-section">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Mã NV</th>
-                                <th>Họ và tên</th>
-                                <th>Phòng ban</th>
-                                <th class="text-right">Tổng thu nhập</th>
-                                <th class="text-right">Tổng giảm trừ</th>
-                                <th class="text-right">Thu nhập tính thuế</th>
-                                <th class="text-right">Thuế TNCN</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="reportTableBody">
-                            <!-- Dữ liệu sẽ được thêm bởi JavaScript -->
-                        </tbody>
-                    </table>
+            <!-- Chi tiết quyết toán -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Mã NV</th>
+                            <th>Họ và tên</th>
+                            <th>Phòng ban</th>
+                            <th class="text-right">Tổng thu nhập</th>
+                            <th class="text-right">Tổng giảm trừ</th>
+                            <th class="text-right">Thu nhập tính thuế</th>
+                            <th class="text-right">Thuế TNCN</th>
+                            <th class="no-print">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody">
+                        <!-- Dữ liệu sẽ được thêm bởi JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal Chi tiết -->
+        <div class="modal fade" id="detailModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chi Tiết Quyết Toán Thuế</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button> -->
+                    </div>
+                    <div class="modal-body" id="detailContent">
+                        <!-- Nội dung chi tiết sẽ được thêm bởi JavaScript -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="printDetailBtn">
+                            <i class="fas fa-print"></i> In chi tiết
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <!-- Modal Chi tiết quyết toán -->
-    <div class="modal fade" id="detailModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Chi Tiết Quyết Toán Thuế</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="detailContent">
-                    <!-- Nội dung chi tiết sẽ được thêm bởi JavaScript -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="printDetailBtn">
-                        <i class="fas fa-print"></i> In chi tiết
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

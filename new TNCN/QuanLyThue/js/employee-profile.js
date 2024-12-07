@@ -8,7 +8,7 @@ const mockEmployeeProfile = {
     address: "Phường Yên Nghĩa, Quận Hà Đông, TP Hà Nội",
     taxId: "8751234567",
     avatar: "../../assets/images/avatar-default.png",
-    password: "Nhanvien@123" // Mật khẩu mặc định
+    password: "123456a@A" // Mật khẩu mặc định
 };
 
 // Regex cho validate mật khẩu

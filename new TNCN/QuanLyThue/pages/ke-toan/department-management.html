@@ -10,64 +10,208 @@
     <link rel="stylesheet" href="../../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        .department-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.2s;
-        }
-
         .main-content {
             padding: 20px;
             height: 100vh;
-            /* overflow: hidden; */
+            display: flex;
+            flex-direction: column;
+            background: #f5f6fa;
+        }
+
+        .container-fluid {
+            max-width: 100%;
+            padding: 0 50px;
+        }
+
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 15px 0;
+        }
+
+        .card {
+            background: white;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 320px;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-body {
+            padding: 15px;
+            height: 100%;
             display: flex;
             flex-direction: column;
         }
 
-
-        .department-card:hover {
-            transform: translateY(-5px);
-        }
-
         .department-header {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
         }
 
-        .department-body {
-            padding: 15px;
-        }
-
-        .department-footer {
-            padding: 15px;
-            background: #f8f9fa;
-            border-top: 1px solid #eee;
-        }
-
-        .employee-list {
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .employee-item {
+        .department-info {
+            flex: 1;
             padding: 8px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .department-info p {
+            margin: 3px 0;
+            padding: 3px 0;
+            font-size: 13px;
+            color: #444;
             border-bottom: 1px solid #eee;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
-        .employee-item:last-child {
+        .department-info p:last-child {
             border-bottom: none;
         }
 
-        .action-buttons .btn {
-            margin-left: 5px;
+        .department-info strong {
+            min-width: 100px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .department-flag {
+            display: flex;
+            gap: 5px;
+        }
+
+        .flag {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+        }
+
+        .flag-active {
+            background: #2ecc71;
+        }
+
+        .flag-inactive {
+            background: #e74c3c;
+        }
+
+        .button-group {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .btn-view-list,
+        .btn-add-employee {
+            padding: 6px;
+            font-size: 12px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            color: white;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-view-list {
+            background: #3498db;
+        }
+
+        .btn-add-employee {
+            background: #2ecc71;
+        }
+
+        .btn-view-list:hover,
+        .btn-add-employee:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-view-list:active,
+        .btn-add-employee:active {
+            transform: translateY(0);
+        }
+
+        .btn-view-list:focus,
+        .btn-add-employee:focus {
+            outline: none;
+            text-decoration: none;
+            color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: none;
+        }
+
+        .btn-edit {
+            background: #3498db;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .department-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                height: auto;
+                min-height: 300px;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+
+            .container-fluid {
+                padding: 0 15px;
+            }
         }
     </style>
 </head>
@@ -76,35 +220,39 @@
     <!-- Sidebar -->
     <nav class="sidebar">
         <div class="user-info text-center">
-            <h3>Kế Toán</h3>
-            <p id="userName">Chào mừng bạn!</p>
+            <h3>Kế toán</h3>
+            <p id="userName"></p>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html"><span>Trang chủ</span></a></li>
-            <li><a href="department-management.html" class="active"><span>Quản lý phòng ban</span></a></li>
-            <li><a href="salary-input.html"><span>Nhập lương hàng tháng</span></a></li>
-            <li><a href="tax-calculation.html"><span>Tính thuế</span></a></li>
-            <li><a href="deduction-setup.html"><span>Thiết lập miễn giảm trừ</span></a></li>
-            <li><a href="personal-info.html"><span>Thông tin cá nhân</span></a></li>
-            <li><a href="salary-tax-report.html"><span>Xem lương và thuế</span></a></li>
-            <li><a href="annual-tax-report.html"><span>Quyết toán thuế năm</span></a></li>
-            <li><a href="../../index.html" id="logoutBtn"><span>Đăng xuất</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Trang chủ</span></a></li>
+            <li><a href="department-management.html" class="active"><i class="fas fa-building"></i><span>Quản lý phòng
+                        ban</span></a></li>
+            <li><a href="salary-input.html"><i class="fas fa-money-check-alt"></i><span>Nhập lương hàng tháng</span></a>
+            </li>
+            <li><a href="tax-calculation.html"><i class="fas fa-calculator"></i><span>Tính thuế</span></a></li>
+            <li><a href="deduction-setup.html"><i class="fas fa-cogs"></i><span>Thiết lập giảm trừ</span></a></li>
+            <li><a href="personal-info.html"><i class="fas fa-user"></i><span>Thông tin cá nhân</span></a></li>
+            <li><a href="salary-tax-report.html"><i class="fas fa-file-alt"></i><span>Xem lương và thuế của từng nhân
+                        viên</span></a></li>
+            <li><a href="annual-tax-report.html"><i class="fas fa-money-bill-wave"></i><span>Xem quyết toán thuế cuối
+                        năm</span></a></li>
+            <li><a href="../../index.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
+            </li>
         </ul>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>Quản Lý Phòng Ban</h2>
+                <h2><i class="fas fa-building"></i> Quản Lý Phòng Ban</h2>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#addDepartmentModal">
                     <i class="fas fa-plus"></i> Thêm Phòng Ban
                 </button>
             </div>
 
-            <!-- Danh sách phòng ban -->
-            <div class="row" id="departmentList">
-                <!-- Sẽ được điền bằng JavaScript -->
+            <div class="department-grid" id="departmentList">
+                <!-- Sẽ được điền bởi JavaScript -->
             </div>
         </div>
 
@@ -114,67 +262,38 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Thêm Phòng Ban Mới</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
                     </div>
                     <div class="modal-body">
                         <form id="departmentForm">
                             <div class="form-group">
-                                <label>Mã phòng ban</label>
-                                <input type="text" class="form-control" id="departmentId" required>
-                                <small class="text-danger" id="departmentIdError"></small>
+                                <label>Mã phòng ban <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="departmentId" placeholder="VD: PB001"
+                                    required>
+                                <small class="text-muted">Định dạng: PBxxx (x là số)</small>
                             </div>
                             <div class="form-group">
-                                <label>Tên phòng ban</label>
+                                <label>Tên phòng ban <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="departmentName" required>
-                                <small class="text-danger" id="departmentNameError"></small>
-                            </div>
-                            <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea class="form-control" id="departmentDescription" rows="3"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Trưởng phòng</label>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="managerName"
-                                            placeholder="Tên trưởng phòng">
-                                        <small class="text-danger" id="managerNameError"></small>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" id="managerId"
-                                            placeholder="Mã nhân viên">
-                                        <small class="text-danger" id="managerIdError"></small>
-                                    </div>
-                                </div>
+                                <select class="form-control" id="departmentManager">
+                                    <option value="">Chọn trưởng phòng...</option>
+                                    <!-- Sẽ được điền bởi JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea class="form-control" id="departmentDesc" rows="3"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary" id="saveDepartment">Lưu</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Xác nhận xóa -->
-        <div class="modal fade" id="deleteDepartmentModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Xác nhận xóa</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Bạn có chắc chắn muốn xóa phòng ban này?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn btn-danger" id="confirmDelete">Xóa</button>
+                        <button type="button" class="btn btn-primary" id="saveDepartmentBtn">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -186,27 +305,23 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Danh Sách Nhân Viên</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
                     </div>
                     <div class="modal-body">
-                        <div class="department-info mb-4">
-                            <h6 class="text-primary" id="modalDepartmentName"></h6>
-                            <p class="text-muted mb-0" id="modalDepartmentInfo"></p>
-                        </div>
+                        <h6 id="modalDepartmentName" class="mb-4"></h6>
                         <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="thead-light">
+                            <table class="table table-bordered">
+                                <thead>
                                     <tr>
                                         <th>Mã NV</th>
                                         <th>Họ và tên</th>
-                                        <th>Chức vụ</th>
                                         <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody id="employeeListBody">
-                                    <!-- Sẽ được điền bằng JavaScript -->
+                                    <!-- Sẽ được điền bởi JavaScript -->
                                 </tbody>
                             </table>
                         </div>
@@ -222,27 +337,69 @@
             </div>
         </div>
 
-        <!-- Modal Thêm Nhân Viên Vào Phòng Ban -->
+        <!-- Modal Thêm Nhân Viên -->
         <div class="modal fade" id="addEmployeeModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Thêm Nhân Viên Vào Phòng Ban</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button> -->
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Chọn nhân viên</label>
                             <select class="form-control" id="employeeSelect">
                                 <option value="">Chọn nhân viên...</option>
+                                <!-- Sẽ được điền bởi JavaScript -->
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button> -->
                         <button type="button" class="btn btn-primary" id="addEmployeeToDepartment">Thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal chỉnh sửa phòng ban -->
+        <div class="modal fade" id="editDepartmentModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Chỉnh sửa phòng ban</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editDepartmentForm">
+                            <div class="form-group">
+                                <label>Mã phòng ban</label>
+                                <input type="text" class="form-control" id="editDeptId" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Tên phòng ban</label>
+                                <input type="text" class="form-control" id="editDeptName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Trưởng phòng</label>
+                                <select class="form-control" id="editDeptManager">
+                                    <option value="">Chọn trưởng phòng...</option>
+                                    <!-- Sẽ được điền bởi JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea class="form-control" id="editDeptDesc" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" onclick="saveDepartment()">Lưu</button>
                     </div>
                 </div>
             </div>

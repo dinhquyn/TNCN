@@ -104,8 +104,638 @@ const mockSalaryData = {
                 tax: 250000,
                 netSalary: 20520000
             }
+        ],
+        3: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        4: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        5: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        6: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        7: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        8: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        9: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        10: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        11: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        12: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ]
+    },
+    2024: {
+        1: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 2000000,
+                bonus: 1000000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1500000,
+                bonus: 2000000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20620000
+            },
+            {
+                employeeId: 'NV003',
+                basicSalary: 20000000,
+                overtime: 2500000,
+                bonus: 1500000,
+                insurance: {
+                    health: 200000,
+                    social: 400000,
+                    unemployment: 100000
+                },
+                tax: 300000,
+                netSalary: 23000000
+            },
+            {
+                employeeId: 'NV004',
+                basicSalary: 16000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 160000,
+                    social: 320000,
+                    unemployment: 80000
+                },
+                tax: 220000,
+                netSalary: 18220000
+            },
+            {
+                employeeId: 'NV005',
+                basicSalary: 17000000,
+                overtime: 2100000,
+                bonus: 1300000,
+                insurance: {
+                    health: 170000,
+                    social: 340000,
+                    unemployment: 85000
+                },
+                tax: 230000,
+                netSalary: 19575000
+            }
+        ],
+        2: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        3: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        4: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        5: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        6: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        7: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        8: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        9: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        10: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
+        ],
+        11: [
+            {
+                employeeId: 'NV001',
+                basicSalary: 15000000,
+                overtime: 1800000,
+                bonus: 1200000,
+                insurance: {
+                    health: 150000,
+                    social: 300000,
+                    unemployment: 75000
+                },
+                tax: 200000,
+                netSalary: 17275000
+            },
+            {
+                employeeId: 'NV002',
+                basicSalary: 18000000,
+                overtime: 1600000,
+                bonus: 1800000,
+                insurance: {
+                    health: 180000,
+                    social: 360000,
+                    unemployment: 90000
+                },
+                tax: 250000,
+                netSalary: 20520000
+            }
         ]
     }
+
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -190,6 +820,7 @@ function loadSalaryReport() {
     updateSummary(data);
 }
 
+
 function updateSalaryTable(data) {
     const tableBody = document.getElementById('salaryReportTableBody');
     if (!tableBody) {
@@ -258,3 +889,110 @@ function formatCurrency(amount) {
         currency: 'VND'
     }).format(amount);
 }
+
+function showSalaryDetail(employeeId) {
+    // Lấy năm và tháng từ bộ lọc
+    const year = parseInt(document.getElementById('yearSelect').value);
+    const month = parseInt(document.getElementById('monthSelect').value);
+
+    // Lấy dữ liệu lương cho tháng và năm đã chọn
+    const monthData = mockSalaryData[year]?.[month]?.find(item => item.employeeId === employeeId);
+
+    if (!monthData) {
+        alert('Không tìm thấy dữ liệu lương cho nhân viên này.');
+        return;
+    }
+
+    // Tìm nhân viên từ mockEmployees
+    const employee = mockEmployees.find(emp => emp.id === employeeId);
+    if (!employee) {
+        alert('Không tìm thấy thông tin nhân viên.');
+        return;
+    }
+
+    // Giảm trừ gia cảnh
+    const personalDeduction = 4400000; // Giảm trừ bản thân (ví dụ)
+    const dependentDeduction = 4400000; // Giảm trừ cho mỗi người phụ thuộc
+
+    // Tổng thu nhập = Lương cơ bản + Thưởng + Phụ cấp
+    const totalIncome = monthData.basicSalary + monthData.overtime + monthData.bonus;
+
+    // Tạo nội dung chi tiết lương
+    const content = `
+        <div class="month-details">
+            <h4 class="mb-4">Chi tiết lương tháng ${month}/${year}</h4>
+            
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h5 class="text-primary">Thu nhập</h5>
+                    <p><strong>Lương cơ bản:</strong> ${formatCurrency(monthData.basicSalary)}</p>
+                    <p><strong>Thưởng và phụ cấp:</strong> ${formatCurrency(monthData.overtime + monthData.bonus)}</p>
+                    <p><strong>Tổng thu nhập:</strong> ${formatCurrency(totalIncome)}</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="text-danger">Các khoản giảm trừ</h5>
+                    <p><strong>BHYT:</strong> ${formatCurrency(monthData.insurance.health)}</p>
+                    <p><strong>BHXH:</strong> ${formatCurrency(monthData.insurance.social)}</p>
+                    <p><strong>BHTN:</strong> ${formatCurrency(monthData.insurance.unemployment)}</p>
+                    <p><strong>Thuế thu nhập cá nhân:</strong> ${formatCurrency(monthData.tax)}</p>
+                </div>
+            </div>
+
+            <!-- Hiển thị đối tượng giảm trừ gia cảnh (người phụ thuộc) -->
+           <h5 class="text-info">Giảm trừ gia cảnh</h5>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Đối tượng</th>
+                            <th>Mối quan hệ</th>
+                            <th>Mã số thuế/Năm sinh</th>
+                            <th>Mức giảm trừ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Giảm trừ bản thân -->
+                        <tr>
+                            <td>Bản thân</td>
+                            <td>-</td>
+                            <td>${employee.id}</td>
+                            <td>${formatCurrency(personalDeduction)}</td>
+                        </tr>
+                        <!-- Giảm trừ cho các người phụ thuộc -->
+                        ${employee.dependents && employee.dependents.length > 0 ?
+            employee.dependents.map(dependent => `
+                            <tr>
+                                <td>${dependent.name}</td>
+                                <td>${dependent.relationship}</td>
+                                <td>${dependent.taxCode || dependent.birthYear || '-'}</td>
+                                <td>${formatCurrency(dependentDeduction)}</td>
+                            </tr>
+                        `).join('') :
+            `<tr><td colspan="4" class="text-center">Không có người phụ thuộc</td></tr>`}
+                    </tbody>
+                    <tfoot>
+                        <tr class="table-info">
+                            <td colspan="3"><strong>Tổng giảm trừ gia cảnh:</strong></td>
+                            <td><strong>${formatCurrency(personalDeduction + (employee.dependents ? employee.dependents.length * dependentDeduction : 0))}</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="text-info">Lương thực nhận</h5>
+                    <p><strong>Lương thực nhận:</strong> ${formatCurrency(monthData.netSalary)}</p>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Cập nhật nội dung modal
+    document.getElementById('salaryDetailContent').innerHTML = content;
+
+    // Hiển thị modal
+    const modal = new bootstrap.Modal(document.getElementById('salaryDetailModal'));
+    modal.show();
+}
+
